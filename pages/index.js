@@ -18,32 +18,40 @@ export default function Home() {
   //     </>
   //   );
 
-  if (!user)
-    return (
-      <>
-        <Layout>
-          <div className="mb-4">
-            <h3 className="text-xl font-medium">
-              {loading ? 'Loading...' : 'Welcome!'}
-            </h3>
-          </div>
+  // if (!user)
+  //   return (
+  //     <>
+  //       <Layout>
+  //         <div className="mb-4">
+  //           <h3 className="text-xl font-medium">
+  //             {loading ? 'Loading...' : 'Welcome!'}
+  //           </h3>
+  //         </div>
 
-          {!loading && (
-            <RoundedButton
-              onClick={signinWithGoogle}
-              label={`Google Signin 🥰`}
-              type="button"
-            />
-          )}
-        </Layout>
-      </>
-    );
+  //         {!loading && (
+  //           <RoundedButton
+  //             onClick={signinWithGoogle}
+  //             label={`Google Signin 🥰`}
+  //             type="button"
+  //           />
+  //         )}
+  //       </Layout>
+  //     </>
+  //   );
 
   return (
-    <>
-      <Layout>
-        <DashboardPaidPlan />
-      </Layout>
-    </>
+    <Layout>
+      <RoundedButton
+        onClick={signout}
+        label={` Sign out 👋🏻`}
+        type="button"
+        outlined
+      />
+      <RoundedButton
+        onClick={signinWithGoogle}
+        label={`Google Auth 👋🏻`}
+        type="button"
+      />
+    </Layout>
   );
 }

@@ -1,73 +1,62 @@
+import Link from 'next/link';
 import DashboardShell from './DashboardShell';
 
 export default function DashboardPaidPlan({ sites }) {
+  // if (!sites.length > 0) {
+  //   return (
+  //     <>
+  //       <h4 className="text-xl font-medium text-center  text-gray-900 mb-2">
+  //         You haven't added any sites.
+  //       </h4>
+  //       <p className="text-base font-base text-center  text-gray-600 mb-2">
+  //         Start now 🥰
+  //       </p>
+  //     </>
+  //   );
+  // }
+
   return (
     <DashboardShell>
-      {sites ? (
-        <table className="table-auto w-full">
-          <thead>
-            <tr className="border-b">
-              <th className="text-left pb-2">Name</th>
-              <th className="text-left pb-2">Site Link</th>
-              <th className="text-left pb-2">Feedback Link</th>
-              <th className="text-left pb-2">Date Added</th>
-            </tr>
-          </thead>
-          <tbody>
+      <table className="table-fixed w-full">
+        <thead>
+          <tr className="border-b">
+            <th className="text-left pb-2">Name</th>
+            <th className="text-left pb-2">Site Link</th>
+            <th className="text-left pb-2">Feedback Link</th>
+            <th className="text-left pb-2">Date Added</th>
+          </tr>
+        </thead>
+        <tbody>
+          {sites.length > 0 ? (
+            sites.map(site => (
+              <tr key={site.id}>
+                <td className="text-sm text-gray-600 pt-2 truncate">
+                  {site.name}
+                </td>
+                <td className="text-sm text-gray-600 pt-2 truncate">
+                  <a className="underline" href={site.link} target="_blank">
+                    {site.link}
+                  </a>
+                </td>
+                <td className="text-sm text-gray-600 pt-2 truncate">
+                  {site.authorId}
+                </td>
+                <td className="text-sm text-gray-600 pt-2 truncate">
+                  {site.createdAt}
+                </td>
+              </tr>
+            ))
+          ) : (
             <tr>
-              <td className="text-sm text-gray-600 pt-2">
-                https://localhost:3000
-              </td>
-              <td className="text-sm text-gray-600 pt-2">
-                https://localhost:3000
-              </td>
-              <td className="text-sm text-gray-600 pt-2">
-                https://localhost:3000
-              </td>
-              <td className="text-sm text-gray-600 pt-2">
-                https://localhost:3000
-              </td>
+              <td>No data to display...</td>
             </tr>
-            <tr>
-              <td className="text-sm text-gray-600">
-                Lorem ipsum dolor sit amet.
-              </td>
-              <td className="text-sm text-gray-600">
-                Lorem ipsum dolor sit amet.
-              </td>
-              <td className="text-sm text-gray-600">
-                Lorem ipsum dolor sit amet.
-              </td>
-              <td className="text-sm text-gray-600">
-                Lorem ipsum dolor sit amet.
-              </td>
-            </tr>
-            <tr>
-              <td className="text-sm text-gray-600">
-                Lorem ipsum dolor sit amet.
-              </td>
-              <td className="text-sm text-gray-600">
-                Lorem ipsum dolor sit amet.
-              </td>
-              <td className="text-sm text-gray-600">
-                Lorem ipsum dolor sit amet.
-              </td>
-              <td className="text-sm text-gray-600">
-                Lorem ipsum dolor sit amet.
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      ) : (
-        <>
-          <h4 className="text-xl font-medium text-center  text-gray-900 mb-2">
-            You haven't added any sites.
-          </h4>
-          <p className="text-base font-base text-center  text-gray-600 mb-2">
-            Start now 🥰
-          </p>
-        </>
-      )}
+          )}
+        </tbody>
+      </table>
     </DashboardShell>
   );
 }
+
+DashboardShell.defaultProps = {
+  sites: [],
+};
