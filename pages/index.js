@@ -1,3 +1,4 @@
+import Layout from '../components/Layout';
 import { useAuth } from '../lib/auth';
 
 export default function Home() {
@@ -5,17 +6,14 @@ export default function Home() {
 
   return (
     <>
-      <main className="flex flex-col min-h-screen bg-blue-50">
-        <h2 className="text-4xl font-bold text-gray-900">CallOut</h2>
-        <img
-          className="w-10 h-10 object-cover rounded-full shadow-md"
-          src={user?.photoURL} // Shorthand for user && user.photoURL
-          alt={user?.name}
-        />
-        <p className="text-base text-gray-600">
-          Current user: <code className="bg-gray-300">{user?.email}</code>
-        </p>
-
+      <Layout>
+        <div className="mb-4">
+          {/* <div className="text-sm text-gray-600"></div> */}
+          <h3 className="text-xl font-medium">CallOut</h3>
+          <p className="text-sm text-gray-600">
+            Current user: <code className="bg-yellow-200">{user?.email}</code>
+          </p>
+        </div>
         {user ? (
           <button
             onClick={signout}
@@ -31,7 +29,7 @@ export default function Home() {
             Register Now🚀
           </button>
         )}
-      </main>
+      </Layout>
     </>
   );
 }
