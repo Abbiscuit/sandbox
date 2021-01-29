@@ -13,7 +13,17 @@ export default function Home() {
       <main className="flex flex-col min-h-screen bg-gray-50">
         {user ? (
           <section className="p-4 bg-white m-4 rounded-md shadow-sm">
-            <h3 className="text-xl mb-4">Hi, {user.email}</h3>
+            <div className="flex items-start">
+              <h3 className="text-xl mb-4 flex-auto">Hi, {user.name}</h3>
+              <figure className="mb-4">
+                <img
+                  className="w-10 h-10 object-cover rounded-full shadow-md"
+                  src={user?.photoURL} // Shorthand for user && user.photoURL
+                  alt={user?.name}
+                />
+              </figure>
+            </div>
+
             <button
               onClick={signout}
               className="px-4 py-2 bg-blue-600 text-white rounded-full shadow-md"
