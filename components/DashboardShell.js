@@ -1,5 +1,5 @@
 import Router from 'next/router';
-import { FaEdit } from 'react-icons/fa';
+import { FiPlus } from 'react-icons/fi';
 
 export default function DashboardShell({ children }) {
   return (
@@ -16,7 +16,7 @@ export default function DashboardShell({ children }) {
           onClick={() => Router.push('/add-site')}
           className="px-4 py-2 bg-blue-600 text-white rounded-full flex items-center shadow-sm"
         >
-          <span className="mr-2">{<FaEdit />}</span>
+          <span className="mr-2">{<FiPlus />}</span>
           Add Site
         </button>
       </div>

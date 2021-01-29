@@ -24,7 +24,7 @@ export default function AddSite() {
     /* SWR here... */
     reset();
 
-    Router.push(`/`);
+    Router.push(`/dashboard`);
   };
 
   return (
