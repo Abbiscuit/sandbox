@@ -8,9 +8,15 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex flex-col min-h-screen bg-yellow-100">
-        <section className="p-4 bg-white m-4 rounded-md">
-          <h3 className="text-2xl">Next with PWA</h3>
+      <main className="flex flex-col min-h-screen bg-gray-50">
+        <section className="p-4 bg-white m-4 rounded-md shadow-sm">
+          <h3 className="text-4xl mb-4">Lorem, ipsum.</h3>
+          <p className="text-gray-600 text-sm mb-4">
+            Lorem ipsum dolor sit amet.
+          </p>
+          <button className="px-4 py-2 bg-blue-600 text-white rounded-full shadow-md">
+            Subscribe 🌕
+          </button>
         </section>
       </main>
     </div>
