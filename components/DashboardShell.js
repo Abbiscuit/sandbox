@@ -1,7 +1,9 @@
 import Router from 'next/router';
 import { FiPlus } from 'react-icons/fi';
+import { useAuth } from '../lib/auth';
 
 export default function DashboardShell({ children }) {
+  const { user } = useAuth();
   return (
     <>
       <div className="flex items-end justify-between mb-4 sm:mb-8">
@@ -12,13 +14,15 @@ export default function DashboardShell({ children }) {
           </h3>
         </div>
 
-        <button
-          onClick={() => Router.push('/add-site')}
-          className="px-4 py-2 bg-blue-600 text-white rounded-full flex items-center shadow-sm"
-        >
-          <span className="mr-2">{<FiPlus />}</span>
-          Add Site
-        </button>
+        {user && (
+          <button
+            onClick={() => Router.push('/add-site')}
+            className="px-4 py-2 bg-blue-600 text-white rounded-full flex items-center shadow-sm"
+          >
+            <span className="mr-2">{<FiPlus />}</span>
+            Add Site
+          </button>
+        )}
       </div>
 
       <div className="bg-white flex flex-col rounded-md overflow-hidden shadow-sm">

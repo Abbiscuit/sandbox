@@ -1,3 +1,5 @@
+import Router from 'next/router';
+import { useEffect } from 'react';
 import DashboardFreePlan from '../components/DashboardFreePlan';
 import DashboardPaidPlan from '../components/DashboardPaidPlan';
 import Layout from '../components/Layout';
@@ -7,16 +9,24 @@ import { useAuth } from '../lib/auth';
 export default function Home() {
   const { user, signinWithGoogle, signout, loading } = useAuth();
 
-  // if (loading)
-  //   return (
-  //     <>
-  //       <Layout>
-  //         <div className="mb-4">
-  //           <h3 className="text-xl font-medium">Loading...</h3>
-  //         </div>
-  //       </Layout>
-  //     </>
-  //   );
+  useEffect(() => {
+    if (user) {
+      Router.push('/dashboard');
+    } else {
+      Router.push('/sandbox');
+    }
+  }, [user]);
+
+  if (loading)
+    return (
+      <>
+        <Layout>
+          <div className="mb-4">
+            <h3 className="text-xl font-medium">Loading...</h3>
+          </div>
+        </Layout>
+      </>
+    );
 
   // if (!user)
   //   return (
@@ -41,7 +51,7 @@ export default function Home() {
 
   return (
     <Layout>
-      <RoundedButton
+      {/* <RoundedButton
         onClick={signout}
         label={` Sign out 👋🏻`}
         type="button"
@@ -51,7 +61,7 @@ export default function Home() {
         onClick={signinWithGoogle}
         label={`Google Auth 👋🏻`}
         type="button"
-      />
+      /> */}
     </Layout>
   );
 }

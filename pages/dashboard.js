@@ -32,12 +32,11 @@ export default function Dashboard() {
         </Layout>
       </>
     );
-
   return (
     <>
       <Layout>
         {error && <ErrorMessage />}
-        {!data.sites ? <Message /> : <DashboardPaidPlan sites={data.sites} />}
+        {!data ? <Message /> : <DashboardPaidPlan sites={data.sites} />}
       </Layout>
     </>
   );

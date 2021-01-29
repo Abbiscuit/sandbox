@@ -1,3 +1,4 @@
+import { format, parseISO } from 'date-fns';
 import Link from 'next/link';
 import DashboardShell from './DashboardShell';
 
@@ -30,7 +31,7 @@ export default function DashboardPaidPlan({ sites }) {
           {sites.length > 0 ? (
             sites.map(site => (
               <tr key={site.id}>
-                <td className="text-sm text-gray-600 pt-2 truncate">
+                <td className="text-sm text-gray-900 pt-2 truncate font-medium">
                   {site.name}
                 </td>
                 <td className="text-sm text-gray-600 pt-2 truncate">
@@ -38,11 +39,11 @@ export default function DashboardPaidPlan({ sites }) {
                     {site.link}
                   </a>
                 </td>
-                <td className="text-sm text-gray-600 pt-2 truncate">
-                  {site.authorId}
+                <td className="text-sm text-gray-600 pt-2 truncate pl-2">
+                  View Feedback
                 </td>
                 <td className="text-sm text-gray-600 pt-2 truncate">
-                  {site.createdAt}
+                  {format(parseISO(site.createdAt), 'PPpp')}
                 </td>
               </tr>
             ))
