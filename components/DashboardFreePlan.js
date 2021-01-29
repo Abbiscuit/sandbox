@@ -1,6 +1,9 @@
+import { useAuth } from '../lib/auth';
 import DashboardShell from './DashboardShell';
 
 export default function DashboardFreePlan() {
+  const { user, signinWithGoogle, signout } = useAuth();
+
   return (
     <DashboardShell>
       <h4 className="text-xl font-medium text-center text-gray-900 mb-4">
