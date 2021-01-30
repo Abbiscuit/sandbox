@@ -21,10 +21,9 @@ export default function AddSite() {
 
     await createSite(newSite);
 
-    /* SWR here... */
     reset();
 
-    Router.push(`/dashboard`);
+    await Router.push(`/dashboard`);
   };
 
   return (

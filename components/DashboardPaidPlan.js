@@ -29,24 +29,26 @@ export default function DashboardPaidPlan({ sites }) {
         </thead>
         <tbody>
           {sites.length > 0 ? (
-            sites.map(site => (
-              <tr key={site.id}>
-                <td className="text-sm text-gray-900 pt-2 truncate font-medium">
-                  {site.name}
-                </td>
-                <td className="text-sm text-gray-600 pt-2 truncate">
-                  <a className="underline" href={site.link} target="_blank">
-                    {site.link}
-                  </a>
-                </td>
-                <td className="text-sm text-gray-600 pt-2 truncate pl-2">
-                  View Feedback
-                </td>
-                <td className="text-sm text-gray-600 pt-2 truncate">
-                  {format(parseISO(site.createdAt), 'PPpp')}
-                </td>
-              </tr>
-            ))
+            sites.map(site => {
+              return (
+                <tr key={site.id}>
+                  <td className="text-sm text-gray-900 pt-2 truncate font-medium">
+                    {site.name}
+                  </td>
+                  <td className="text-sm text-gray-600 pt-2 truncate">
+                    <a className="underline" href={site.link} target="_blank">
+                      {site.link}
+                    </a>
+                  </td>
+                  <td className="text-sm text-gray-600 pt-2 truncate pl-2">
+                    View Feedback
+                  </td>
+                  <td className="text-sm text-gray-600 pt-2 truncate">
+                    {format(parseISO(site.createdAt), 'PPpp')}
+                  </td>
+                </tr>
+              );
+            })
           ) : (
             <tr>
               <td>No data to display...</td>
