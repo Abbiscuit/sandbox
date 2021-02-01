@@ -41,7 +41,7 @@ export default function DashboardPaidPlan({ sites }) {
                     </a>
                   </td>
                   <td className="text-sm text-gray-600 pt-2 truncate pl-2">
-                    View Feedback
+                    <Link href={`/p/${site.id}`}>View Feedback</Link>
                   </td>
                   <td className="text-sm text-gray-600 pt-2 truncate">
                     {format(parseISO(site.createdAt), 'PPpp')}

@@ -6,7 +6,7 @@ import RoundedButton from '../components/RoundedButton';
 import { useAuth } from '../lib/auth';
 
 export default function Sandbox() {
-  const { signout, signinWithGoogle } = useAuth();
+  const { signout, signinWithGoogle, user } = useAuth();
 
   return (
     <>
@@ -20,11 +20,14 @@ export default function Sandbox() {
           type="button"
           outlined
         />
-        <RoundedButton
-          onClick={signinWithGoogle}
-          label={`Google Auth 👋🏻`}
-          type="button"
-        />
+
+        {user && !user && (
+          <RoundedButton
+            onClick={signinWithGoogle}
+            label={`Google Auth 👋🏻`}
+            type="button"
+          />
+        )}
       </Layout>
     </>
   );
