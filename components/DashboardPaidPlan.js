@@ -3,19 +3,6 @@ import Link from 'next/link';
 import DashboardShell from './DashboardShell';
 
 export default function DashboardPaidPlan({ sites }) {
-  // if (!sites.length > 0) {
-  //   return (
-  //     <>
-  //       <h4 className="text-xl font-medium text-center  text-gray-900 mb-2">
-  //         You haven't added any sites.
-  //       </h4>
-  //       <p className="text-base font-base text-center  text-gray-600 mb-2">
-  //         Start now 🥰
-  //       </p>
-  //     </>
-  //   );
-  // }
-
   return (
     <DashboardShell>
       <table className="table-fixed w-full">

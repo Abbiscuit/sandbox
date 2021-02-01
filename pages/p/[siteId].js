@@ -3,18 +3,48 @@ import Layout from '../../components/Layout';
 import { useAuth } from '../../lib/auth';
 import { getAllFeedback, getAllSites } from '../../lib/db-admin';
 import { parseISO, format } from 'date-fns';
+import { useForm } from 'react-hook-form';
+import { data } from 'autoprefixer';
+import { useEffect, useState } from 'react';
+import { createFeedback, createUser } from '../../lib/db';
+import firebase from '../../lib/firebase';
 
 export default function SiteFeedback({ initialFeedback }) {
   const router = useRouter();
   const { siteId } = router.query;
   const { user } = useAuth();
+  const { register, reset, handleSubmit } = useForm();
+  const [allFeedback, setAllFeedback] = useState([]);
+
+  useEffect(() => {
+    setAllFeedback(initialFeedback);
+  }, [initialFeedback]);
+
+  const onSubmit = async data => {
+    const newFeedback = {
+      author: user.name,
+      authorId: user.uid,
+      siteId,
+      text: data.comment,
+      createdAt: new Date().toISOString(),
+      provider: user.provider,
+      status: 'pending',
+      rating: 3,
+    };
+
+    setAllFeedback(currentFeedback => [newFeedback, ...currentFeedback]);
+    await createFeedback(newFeedback);
+
+    reset();
+  };
 
   return (
-    <Layout>
-      <div className="text-gray-600 font-light text-sm mb-1">{`PageID: ${siteId}`}</div>
-
+    <Layout subTitle="" title="Feedback">
       {user && (
-        <form className="w-full flex items-end mb-4">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="w-full flex items-end mb-4"
+        >
           <div className="flex flex-col w-1/4">
             <label className="text-sm text-gray-600" htmlFor="comment">
               Comment
@@ -23,7 +53,9 @@ export default function SiteFeedback({ initialFeedback }) {
               className="p-2"
               type="text"
               id="comment"
+              name="comment"
               placeholder="Leave a comment"
+              ref={register}
             />
           </div>
           <button className="p-2 text-gray-900 px-4" type="submit">
@@ -32,11 +64,11 @@ export default function SiteFeedback({ initialFeedback }) {
         </form>
       )}
 
-      {initialFeedback &&
-        initialFeedback.map(feedback => (
-          <div key={feedback.id}>
+      {allFeedback &&
+        allFeedback.map(feedback => (
+          <div key={feedback.id || new Date().getTime().toString()}>
             <div>
-              <h3 className="text-gray-900 text-sm font-medium">
+              <h3 className={`text-gray-900 text-sm font-medium`}>
                 {feedback.author}
               </h3>
               <p className="text-gray-600 text-xs mb-2">

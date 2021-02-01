@@ -1,7 +1,7 @@
 import useSWR from 'swr';
 import { fetcher } from '../utils/fetcher';
 
-import DashboardFreePlan from '../components/DashboardFreePlan';
+// import DashboardFreePlan from '../components/DashboardFreePlan';
 import DashboardPaidPlan from '../components/DashboardPaidPlan';
 import Layout from '../components/Layout';
 import RoundedButton from '../components/RoundedButton';
@@ -15,7 +15,7 @@ export default function Dashboard() {
   if (!user)
     return (
       <>
-        <Layout>
+        <Layout title="My Sites" subTitle="site">
           <div className="mb-4">
             <h3 className="text-xl font-medium">
               {loading ? 'Loading...' : 'Welcome!'}
@@ -34,7 +34,7 @@ export default function Dashboard() {
     );
   return (
     <>
-      <Layout>
+      <Layout title="My Sites" subTitle="site" feedback>
         {error && <ErrorMessage />}
         {!data ? <Message /> : <DashboardPaidPlan sites={data.sites} />}
       </Layout>

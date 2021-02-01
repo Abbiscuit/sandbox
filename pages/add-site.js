@@ -31,20 +31,20 @@ export default function AddSite() {
       <Head>
         <title> Add awesome site! </title>
       </Head>
-      <Layout>
-        <div className="flex flex-col items-start">
-          <div className="text-sm text-gray-600 sm:text-base">Sites</div>
-          <h3 className="text-xl font-medium sm:text-4xl sm:font-bold">
-            Add Site
-          </h3>
-        </div>
+
+      <Layout title="Add Site" subTitle="site">
         <div className="mt-4">
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="w-full bg-white p-4 sm:p-8 rounded-md shadow-sm"
           >
             <div className="mb-4">
-              <label htmlFor="siteName">Name</label>
+              <label
+                htmlFor="siteName"
+                className="uppercase text-xs font-medium inline-block mb-1"
+              >
+                Name
+              </label>
               <input
                 className="w-full border rounded-sm px-4 py-2"
                 type="text"
@@ -58,7 +58,12 @@ export default function AddSite() {
             </div>
 
             <div className="mb-4">
-              <label htmlFor="link">Link</label>
+              <label
+                htmlFor="link"
+                className="uppercase text-xs font-medium inline-block mb-1"
+              >
+                Link
+              </label>
               <input
                 className="w-full border rounded-sm px-4 py-2 "
                 type="url"

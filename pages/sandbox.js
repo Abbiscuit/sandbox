@@ -10,22 +10,19 @@ export default function Sandbox() {
 
   return (
     <>
-      <Layout>
-        <DashboardFreePlan />
-        {/* <DashboardPaidPlan /> */}
-
-        <RoundedButton
-          onClick={signout}
-          label={` Sign out 👋🏻`}
-          type="button"
-          outlined
-        />
-
-        {user && !user && (
+      <Layout title="Get started now" subTitle="welcome">
+        {!user ? (
           <RoundedButton
             onClick={signinWithGoogle}
             label={`Google Auth 👋🏻`}
             type="button"
+          />
+        ) : (
+          <RoundedButton
+            onClick={signout}
+            label={` Sign out 👋🏻`}
+            type="button"
+            outlined
           />
         )}
       </Layout>
